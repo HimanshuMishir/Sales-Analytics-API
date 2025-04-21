@@ -1,0 +1,52 @@
+query Query($customerId: ID!) {
+  getCustomerSpending(customerId: $customerId) {
+    customerId
+    totalSpent
+    averageOrderValue
+    lastOrderDate
+  }
+}
+
+query {
+  getTopSellingProducts(limit: 3) {
+    productId
+    name
+    totalSold
+  }
+}
+
+query {
+  getSalesAnalytics(startDate: "2024-12-01", endDate: "2025-02-28") {
+    totalRevenue
+    completedOrders
+    categoryBreakdown {
+      category
+      revenue
+    }
+  }
+}
+
+query Query($customerId: String!, $page: Int, $limit: Int) {
+  getCustomerOrders(customerId: $customerId, page: $page, limit: $limit) {
+    _id
+    customerId
+    orderDate
+    status
+    totalAmount
+    products {
+      priceAtPurchase
+      productId
+      quantity
+    }
+  }
+}
+
+mutation PlaceOrder($input: PlaceOrderInput!) {
+  placeOrder(input: $input) {
+    _id
+    customerId
+    totalAmount
+    status
+    orderDate
+  }
+}
