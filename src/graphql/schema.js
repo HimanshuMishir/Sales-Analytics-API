@@ -30,6 +30,7 @@ type Order {
 
 type CustomerSpending {
   customerId: String!
+  name: String
   totalSpent: Float!
   averageOrderValue: Float!
   lastOrderDate: String
